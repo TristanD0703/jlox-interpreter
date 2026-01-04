@@ -1,0 +1,10 @@
+/* I am a multiline comment */
+
+/* Here I define stuff
+on multiple lines! */
+
+/* And now I have... /* MORE comments */ inside */
+
+/* And now I have... /* MORE 
+
+    comments */ on multiple lines inside */

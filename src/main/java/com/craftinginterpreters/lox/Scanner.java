@@ -103,6 +103,8 @@ public class Scanner {
           // Comments go until EOL
           while (peek() != '\n' && !isAtEnd())
             advance();
+        } else if (match('*')) {
+          multilineComment();
         } else {
           addToken(SLASH);
         }
@@ -137,6 +139,25 @@ public class Scanner {
 
   private boolean isDigit(char c) {
     return c >= '0' && c <= '9';
+  }
+
+  private void multilineComment() {
+    int nests = 1;
+    while (nests > 0) {
+      if (peek() == '*' && peekNext() == '/') {
+        advance();
+        nests--;
+      }
+
+      if (peek() == '/' && peekNext() == '*') {
+        advance();
+        nests++;
+      }
+
+      if (peek() == '\n')
+        line++;
+      advance();
+    }
   }
 
   private void number() {
